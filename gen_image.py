@@ -33,12 +33,12 @@ LAND_EDGE = (120, 105, 70)
 GREY = (90, 88, 80)
 GOLD = (212, 175, 55)
 
-SERIF_BLACK = "/usr/share/fonts/truetype/noto/NotoSerif-Black.ttf"
-SERIF_B = "/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf"
-SERIF_R = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
-SERIF_I = "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf"
-SANS_B = "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf"
-SANS_R = "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf"
+SERIF_BLACK = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
+SERIF_B = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf"
+SERIF_R = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
+SERIF_I = "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf"
+SANS_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+SANS_R = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 
 
 def font(path, size):
@@ -1106,9 +1106,9 @@ def render(out_path):
         assert len(head) <= 3, "hero %d headline too long: %r" % (hero["num"], head)
         y = text_block(d, hx, ky + 14, head, font(SERIF_B, 19), INK, 21)
         body = wrap(d, hero["body"] + " \u2014 " + hero["src"],
-                    font(SERIF_R, 11), hero_w)
+                    font(SERIF_R, 8.5), hero_w)
         assert len(body) <= 3, "hero %d body too long: %r" % (hero["num"], body)
-        text_block(d, hx, y + 2, body, font(SERIF_R, 11), INK, 13)
+        text_block(d, hx, y + 2, body, font(SERIF_R, 8.5), INK, 13)
     hline(d, 28, W - 28, 432)
 
     # ---- twelve mid stories, two rows of six
@@ -1128,9 +1128,9 @@ def render(out_path):
             hl = wrap(d, head, font(SANS_B, 11), mid_w)
             assert len(hl) <= 2, "mid %d headline too long: %r" % (num, hl)
             y = text_block(d, mx, ky + 12, hl, font(SANS_B, 11), INK, 12.5)
-            bl = wrap(d, body + " \u2014 " + src, font(SANS_R, 9.5), mid_w)
+            bl = wrap(d, body + " \u2014 " + src, font(SANS_R, 9), mid_w)
             assert len(bl) <= 3, "mid %d body too long: %r" % (num, bl)
-            text_block(d, mx, y + 2, bl, font(SANS_R, 9.5), INK, 11.5)
+            text_block(d, mx, y + 2, bl, font(SANS_R, 9), INK, 11.5)
     hline(d, 28, W - 28, 712)
 
     # ---- map + also-on-thursday
@@ -1150,7 +1150,7 @@ def render(out_path):
         nf = font(SANS_B, 10)
         d.text((ax, ay), "%02d" % num, font=nf, fill=RED)
         line = "%s \u2014 %s. %s" % (place, head, src)
-        lf = font(SANS_R, 10)
+        lf = font(SANS_R, 9)
         d.text((ax + 24, ay),
                fit(d, line, lf, 236 - 24), font=lf, fill=INK)
     hline(d, 28, W - 28, 942)
