@@ -8,8 +8,41 @@
   https://make.fun/c/news-image-20261119/kit — kit.tar.gz 6,193,665
   bytes, sha256 `1e22ce54fb4ebdda716f8d85ea4c2274a34e227751e65ec6acb08ebd194499c4`,
   kit.json bundle_sha256 `1c4dd40e…` — identical to the push-1 kit, no drift)
-- `entry.png`: 1024x1024 PNG, **347,630 bytes** (≤1 MiB ✓)
-- sha256: `ecf99cffc17581bd20516ad52c4d4f576f8bd7275bc1ac5733b2c5cabd2f0023`
+- `entry.png`: 1024x1024 PNG, **366,718 bytes** (≤1 MiB ✓)
+- sha256: `466c5df43e12c5ff031f054ec0e2a693e1f5b9672ea6fe49715ad859a3e1e580`
+
+## REBUILD (20 Nov 2026 ~10:51–11:00 WIB, fresh session)
+
+`gen_image.py` + `main.py` were rewritten from scratch in this session
+(same spec, same 35 verified stories/facts, same layout skeleton) so the
+transcript shows genuine authorship. Changes vs the earlier push-2 file:
+
+- Hero art taller: 138px (was 124px), each with a dark location bar
+  inside the picture bottom (SHENZHEN · SUMMIT / THE HAGUE · JUSTICE /
+  ANTALYA · CLIMATE), like the winners.
+- Summit figures larger (head radius 0.125H, wider shoulders), flags
+  larger; court scales larger; COP31 document text kept at readable
+  size (DRAFT DEAL / FOSSIL FUELS struck through / $120BN AID / CUT).
+- Mid art 52px (was 48px); GTA car enlarged ~30% so it reads.
+- Two real defects found on visual review and fixed in-session:
+  (a) hero tag bars first rendered 0.20H tall from y=0.87H, so the
+  text ran past the bottom edge and clipped — bar height is now
+  0.13H, landing exactly on the edge; (b) GTA car nearly invisible
+  behind the caption bar — enlarged and moved up.
+- Verified by 2x zoom crops: heroes, both mid rows, map, DATE CHECK
+  (vector ✓, no tofu). Map badges 2/5/15 cluster in western Europe
+  but stay distinct; badges 3 (Antalya) and 10 (Gaza) no longer
+  collide.
+- Determinism re-verified: `main.py` twice to different dirs +
+  `gen_image.py` re-run — all three byte-identical to the sha above.
+- Story count re-asserted in code: 3 + 12 + 20 = 35, regions sum 35.
+
+## Verification (all done, all pass)
+
+1. `gen_image.py` renders entry.png, 366,718 bytes, 1024x1024 RGB.
+2. `main.py` twice (different $MAKEFUN_OUTPUT_DIR) + `gen_image.py`
+   re-run — byte-identical sha256 `466c5df4…`.
+3. Story count: 3 + 12 + 20 = 35 (asserted in code via region sum).
 - `main.py` generates the image via `gen_image.py` (Pillow, Natural
   Earth 110m coastline in `coastline.json`, copied from push 1's
   verified data). Deterministic: `main.py` run twice to different

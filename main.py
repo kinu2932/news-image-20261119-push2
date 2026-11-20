@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""Draw the 19 November 2026 world-news front page to the output dir.
+"""Render the 19 November 2026 front page to $MAKEFUN_OUTPUT_DIR/entry.png.
 
-The image is drawn by gen_image.py (Pillow; Natural Earth 110m coastline
-in coastline.json; 35 stories reported on Thursday 19 November 2026) and
-written to $MAKEFUN_OUTPUT_DIR/entry.png (default /output).
-Standard library + Pillow only, no network, deterministic: running it
-twice writes byte-identical files.
+The drawing lives in gen_image.py (Pillow only; Natural Earth 110m
+coastline in coastline.json; 35 stories from Thursday 19 November 2026).
+No network, no clock, no random — running it twice writes byte-identical
+files. Output is one 1024x1024 PNG under 1 MiB.
 """
 import os
 import sys
